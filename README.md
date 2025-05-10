@@ -5,42 +5,47 @@ pc chome 기준 (해상도 1280)으로 개발 진행하였고, 해상도에 따�
 
 ## 별도 추가한 Package 
 - react-router-dom
-  ㄴ 대시보드/상세 페이지 navigate/params 처리
+  - 대시보드/상세 페이지 navigate/params 처리
 - antd
-  ㄴ card, table, rangePicker 등 기본 UI 구성 사용 
+  - card, table, rangePicker 등 기본 UI 구성 사용 
 - chart.js + react-chartjs-2 (wrapper) 
-  ㄴ 가격대별 구매 빈도 차트 (bar chart)
+  - 가격대별 구매 빈도 차트 (bar chart)
 - tanstack-query 
-  ㄴ 데이터 페칭 등 서버 상태 관리 
+  - 데이터 페칭 등 서버 상태 관리 
 
 ## apps/frontend/src 구조 설명 
-  /src
-    /components
-      /common
-        StatusDisplay.tsx - loading, error 상태 처리 공통 컴포넌트 
-      /dashboard
-        CustomerTable.tsx - 가장 많이 구매한 고객 목록 및 검색 기능 컴포넌트
-        PurchaseFrequencyChart.tsx - 가격대별 구매 빈도 차트 컴포넌트
-    /hooks
-      useCustomers.ts - 고객 목록 조회 훅
-      useCustomerPurchases.ts - 특정 고객 구매 내역 조회 훅
-      usePurchaseFrequency.ts - 모든 구매 데이터 조회 훅 
-      useQueryWithFetcher.ts - useQuery customhook 
-    /pages
-      Dashboard.tsx - 대시보드
-      CustomerDetail.tsx - 고객 ID 기반 상세 기능
-      NotFound.tsx - 404 페이지
-    /utils
-      fetchWithHandling.ts - 에러 핸들링 공통 유틸
-      urlWithParams.ts - query param 관련 공통 유틸 
+<pre>
+
+src/
+├── components/
+│   ├── common/
+│   │   └── StatusDisplay.tsx             - loading, error 상태 처리 공통 컴포넌트
+│   └── dashboard/
+│       ├── CustomerTable.tsx             - 가장 많이 구매한 고객 목록 및 검색 기능 컴포넌트
+│       └── PurchaseFrequencyChart.tsx    - 가격대별 구매 빈도 차트 컴포넌트
+├── hooks/
+│   ├── useCustomers.ts                   - 고객 목록 조회 훅
+│   ├── useCustomerPurchases.ts           - 특정 고객 구매 내역 조회 훅
+│   ├── usePurchaseFrequency.ts           - 모든 구매 데이터 조회 훅
+│   └── useQueryWithFetcher.ts            - useQuery customhook
+├── pages/
+│   ├── Dashboard.tsx                     - 대시보드
+│   ├── CustomerDetail.tsx                - 고객 ID 기반 상세 기능
+│   └── NotFound.tsx                      - 404 페이지
+└── utils/
+    ├── fetchWithHandling.ts              - 에러 핸들링 공통 유틸
+    └── urlWithParams.ts                  - query param 관련 공통 유틸
+
+</pre>
+
 
 ## 추가 작업 
 - vite.config.ts
-  ㄴ api 호출을 위한 proxy 설정
-  ㄴ import시 path에서 '@' 별칭을 사용하기 위해 src 디렉토리 @ 별칭 설정 
+  - api 호출을 위한 proxy 설정
+  - import시 path에서 '@' 별칭을 사용하기 위해 src 디렉토리 @ 별칭 설정 
 - tsconfig.app.json 
-  ㄴ vite.config.ts에서 별칭 설정했던 부분을 IDE, typescript 컴파일러 등에서의 일관성을 위해 동일하게 적용 
-  ㄴ include 경로 src 하위 path도 포함하도록 확장 
+  - vite.config.ts에서 별칭 설정했던 부분을 IDE, typescript 컴파일러 등에서의 일관성을 위해 동일하게 적용 
+  - include 경로 src 하위 path도 포함하도록 확장 
 
 ## 프로젝트 실행 방법 
 - 기존에 셋팅 되어있던 대로 동일하게 실행하면 동작 합니다. 
@@ -76,7 +81,8 @@ yarn start-client
   - 404 페이지
     - route에 선언되지 않은 기타 페이지 처리
   - 예외 처리 
-    ㄴ utils/fetchWithHandling에서 fetch + 에러 처리
-    ㄴ hooks/useQueryWithFetcher 내에서 useQuery + fetchWithHandling을 추가하여 데이터 조회 wrapper로 사용
+    - utils/fetchWithHandling에서 fetch + 에러 처리
+    - hooks/useQueryWithFetcher 내에서 useQuery + fetchWithHandling을 추가하여 데이터 조회 wrapper로 사용
   - 쿼리 파람 처리 함수 추가 (utils/urlWithParams)
-    ㄴ url에 query params가 있는 경우 URLSearchParams 를 이용하여 baseUrl뒤로 queryString 추가
+    - url에 query params가 있는 경우 URLSearchParams 를 이용하여 baseUrl뒤로 queryString 추가
+   
